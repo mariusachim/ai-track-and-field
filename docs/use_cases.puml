@@ -1,0 +1,37 @@
+@startuml
+
+left to right direction
+
+actor "Administrator" as admin
+actor "User" as user
+actor "System" as system
+
+rectangle "Track and Field Competition Management" {
+  usecase "UC-001\nManage Competitions" as UC001
+  usecase "UC-002\nDefine Categories" as UC002
+  usecase "UC-003\nAssign Events to Categories" as UC003
+  usecase "UC-004\nRegister Athletes" as UC004
+  usecase "UC-005\nAuto-assign Category" as UC005
+  usecase "UC-006\nRecord Event Results" as UC006
+  usecase "UC-007\nCalculate Points" as UC007
+  usecase "UC-008\nRank Athletes" as UC008
+  usecase "UC-009\nView Ranking List" as UC009
+}
+
+admin --> UC001
+admin --> UC002
+admin --> UC003
+admin --> UC004
+admin --> UC006
+
+system --> UC005
+system --> UC007
+system --> UC008
+
+user --> UC009
+
+UC004 ..> UC005 : <<include>>
+UC006 ..> UC007 : <<include>>
+UC007 ..> UC008 : <<include>>
+
+@enduml
