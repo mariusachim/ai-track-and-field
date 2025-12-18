@@ -1,0 +1,60 @@
+@startuml use_cases
+left to right direction
+
+actor Administrator as admin
+actor System as system
+actor User as user
+
+package "AI Track and Field" {
+  ' Competition Management
+  usecase "UC-001\nCreate and Manage\nCompetitions" as UC001
+  usecase "UC-011\nEdit Competition\nDetails" as UC011
+
+  ' Category Management
+  usecase "UC-002\nDefine Categories" as UC002
+
+  ' Event Management
+  usecase "UC-003\nAssociate Events\nwith Categories" as UC003
+
+  ' Athlete Management
+  usecase "UC-004\nRegister Athletes" as UC004
+  usecase "UC-005\nAuto-assign Athletes\nto Categories" as UC005
+  usecase "UC-012\nEdit Athlete\nInformation" as UC012
+
+  ' Club Management
+  usecase "UC-010\nManage Clubs" as UC010
+
+  ' Results Management
+  usecase "UC-006\nRecord Athlete\nResults" as UC006
+  usecase "UC-007\nCalculate Points\nusing IAAF Formulas" as UC007
+  usecase "UC-008\nAuto-rank Athletes" as UC008
+
+  ' Viewing and Reporting
+  usecase "UC-009\nView Ranking Lists\nby Category" as UC009
+}
+
+' Administrator relationships
+admin --> UC001
+admin --> UC011
+admin --> UC002
+admin --> UC003
+admin --> UC004
+admin --> UC012
+admin --> UC010
+admin --> UC006
+
+' System relationships
+system --> UC005
+system --> UC007
+system --> UC008
+
+' User relationships
+user --> UC009
+
+' Dependencies
+UC005 ..> UC004 : <<includes>>
+UC007 ..> UC006 : <<includes>>
+UC008 ..> UC007 : <<includes>>
+UC009 ..> UC008 : <<includes>>
+
+@enduml
